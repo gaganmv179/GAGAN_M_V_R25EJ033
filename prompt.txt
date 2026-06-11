@@ -1,0 +1,46 @@
+Phase 1: Core Architecture & Data Structures
+Prompt 1: Designing the Layout & Rendering Engine
+"Act as an expert C developer. I need to design a 2D graphics editor that renders to a 2D array of characters (char canvas[30][60]). Write the foundational code setup: define the structures for shapes (Line, Rectangle, Circle, Triangle), a global canvas buffer, and a clear/render system. The shapes should be rendered using either * or _. Provide a display() function that draws a clean border around the canvas and outputs it to the console using standard printf."
+
+Phase 2: Drawing Algorithms
+Prompt 2: Implementing Shape Math
+"Using the previously designed 2D canvas architecture, write the precise plotting functions for the following shapes:
+
+draw_line(x1, y1, x2, y2) using Bresenham's Line Algorithm.
+
+draw_rect(x, y, width, height) by leveraging the line function.
+
+draw_circle(cx, cy, radius) using Midpoint/Bresenham's Circle Algorithm, applying a 2:1 aspect ratio correction factor to the X-axis so it doesn't look like an oval in the terminal.
+
+draw_triangle(x1, y1, x2, y2) for an isosceles triangle.
+Ensure all plotting functions bounds-check the array to prevent segmentation faults."
+
+Phase 3: State Management (CRUD Operations)
+Prompt 3: Object Manipulation Logic
+"Expand the C graphics editor to support dynamic object management. Implement a fixed-size array/list of structures to track active shapes. Write the logic to:
+
+Add a shape to the scene list.
+
+Delete a shape from the scene by its index ID (soft delete by setting an active flag to 0).
+
+Modify a shape's position or dimensions by its index ID.
+After any add, delete, or modify operation, the canvas must be completely cleared and re-rendered from the active shapes list."
+
+Phase 4: CLI Interactive Loop
+Prompt 4: Putting it Together with a CLI Menu
+"Combine the canvas rendering, shape algorithms, and object management into a fully interactive main() execution loop. Create a text-based menu below the canvas rendering output that asks the user to choose: 1. Add Shape, 2. Delete Shape, 3. Modify Shape, 4. Exit. When adding or modifying, use scanf to gracefully prompt for coordinates and shape properties."
+
+Phase 5: Testing & Edge Cases
+Prompt 5: Generating Unit Tests & Edge Cases
+"Write a testing suite or a standalone test function for this C graphics editor to verify its robustness. I need test scenarios that validate:
+
+Out-of-bounds drawing: Trying to draw a circle or line partially outside the 60×30 canvas bounds (clipping test).
+
+Index deletion bounds: Trying to delete an object ID that doesn't exist or is out of range.
+
+Overlapping elements: Adding 3 distinct overlapping shapes to ensure the layering engine handles overlapping characters correctly without crashes.
+Provide clean test inputs or automated mock sequences."
+
+Phase 6: Upgrading to ncurses (Bonus/Advanced)
+Prompt 6: Porting to ncurses
+"Refactor the working 2D graphics editor code to use the ncurses library instead of standard printf/scanf. Replace the CLI menu with an interactive setup where the user can use arrow keys to navigate a blinking cursor around the canvas, press keys (like 'R' for rectangle, 'C' for circle) to drop shapes at the cursor position, and use mvaddch to completely eliminate terminal flickering."
